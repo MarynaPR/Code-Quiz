@@ -1,0 +1,57 @@
+* {
+
+}
+  :root {
+    --primary: white;
+    --secondary:grey;
+    --tertiary:black;
+    --purple: purple;
+    font-size: 70%;
+  }
+  
+  body {
+    background: var(--primary);
+    color: var(--purple);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  header {
+    text-align: center;
+    background: var(--secondary);
+    padding: 20px 15px;
+    width: 100%;
+  }
+  
+  header p {
+    text-align: center;
+    color: var(--tertiary);
+    margin: 10px 0 20px;
+    font-size: 2rem;
+  }
+  
+  h1,
+  p,
+  button,
+ {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  footer {
+    width: 100%;
+    text-align: center;
+    background: var(--secondary);
+    color: var(--tertiary);
+    font-size: 1.5rem;
+    padding: 10px;
+    border-top: 5px solid var(--primary);
+  }
+  
+  @media screen and (max-width: 980px) {
+  
+  }
+  
