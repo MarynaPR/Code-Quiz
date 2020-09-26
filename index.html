@@ -10,19 +10,36 @@
 </head>
 
 <body>
-    <!-- div or header for 
-        -view highscores
-        -timer?
-    --->
     <header>
-        <h1 class="page-title">CODING QUIZ</h1>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
-            will penalize your score/time by ten seconds!</p>
-        <button class="btn">Start Quiz!</button>
+        <h1 class="page-title">C O D I N G - Q U I Z</h1>
     </header>
+
     <main>
-        <!--sections or div?-->
-        <section></section>
+        <!-- div for highscores, times etc.-->
+        <div class="wrapper">
+            <div id="start-page" class="start">
+                <p> Try to answer the following code-related questions within the time
+                    limit. Keep in mind that incorrect answers will penalize your
+                    score/time by ten seconds!</p>
+                <button id="start">START QUIZ</button>
+            </div>
+            <div id="questions" class="hide">
+                <h2 id="question-display"></h2>
+                <div id="choices" class="choices"></div>
+                <!--if offering abcd options:
+                <div class="choice" id="a"() b c c and so on )onclick= "checkAnswer("a")>a</div> -->
+            </div>
+            <div id="timer"></div>
+            <!-- 
+                if deducting time for wrong answers? 
+                <div id="counter">60</div> -->
+
+            <!--to track progress-->
+            <div id="progress" class="scores"></div>
+            <div id="progressContainer" style="display: none;"></div>
+            <!--can add image or/and %of progress
+           <img src=""><p>50%</p> -->
+        </div>
     </main>
     <footer>
         &copy;2020 by Code-Quiz

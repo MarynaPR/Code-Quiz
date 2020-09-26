@@ -26,17 +26,13 @@
     width: 100%;
   }
   
-  header p {
-    text-align: center;
+  header h1 {
     color: var(--tertiary);
     margin: 10px 0 20px;
-    font-size: 2rem;
   }
-  
-  h1,
+
   p,
-  button,
- {
+  button {
     font-size: 2rem;
     text-align: center;
   }
