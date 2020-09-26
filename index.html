@@ -29,14 +29,21 @@
                 <!--if offering abcd options:
                 <div class="choice" id="a"() b c c and so on )onclick= "checkAnswer("a")>a</div> -->
             </div>
+            <div id="last-page" class="hide">
+                <h2>Done!</h2>
+                <p> Your final score is <span id="final-scpre"></span>.</p>
+                <p> Enter your name: <input type="text" id="name" />
+                    <button id="submit">Submit</button>
+                </p>
+            </div>
             <div id="timer">Remaining Time: <span id="time-left">0</span></div>
             <!-- 
                 if deducting time for wrong answers? 
                 <div id="counter">60</div> -->
 
             <!--to track progress-->
-            <div id="progress" class="scores"></div>
-            <div id="progressContainer" style="display: none;"></div>
+            <div id="progress" style="display: none;"></div>
+
             <!--can add image or/and %of progress
            <img src=""><p>50%</p> -->
         </div>
