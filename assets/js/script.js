@@ -37,11 +37,13 @@ var questions = [
 //list var time
 var score = 0;
 
+
 var timerId;
 // var timeLeft = 60;
 
 //var for quesiton:
 var currentQuestion = -1;
+var answer;
 //timeDeduction = 10:
 //var time = question.length * 15;
 
@@ -55,6 +57,7 @@ var startButton = document.querySelector("#start");
 var clearButton = document.querySelector("clear");
 var submitButton = document.querySelector("submit");
 var rtrnButton = document.querySelector("return");
+//answerButton?
 
 //var for questions, choices, answers, progress
 var questionsEl = document.querySelector("#guestions");
@@ -73,8 +76,10 @@ var timerEl = document.querySelector("#time");
 function startQuiz() {
     //console.log(test)
     //to move to the questions page set attribute to hide the page:
+
     var firstPageEl = document.getElementById("first-page");
     firstPageEl.setAttribute("class", "hide");
+    //questions.innerHTML = "";
 
     //star the timer when the game begins:
     timerId = setInterval(timeRemaining, 1000);
@@ -86,101 +91,116 @@ function startQuiz() {
     getQuestions();
 };
 
+startButton.addEventListener("click", startQuiz);
+
 function getQuestions() {
-    console.log(test)
-    //get the question fromt he erray of questions (on top of file):
-    var currentQuestion = questions[currentQuesitonIndex];
-    //current question shown
-    var displayEl = document.querySelector("#question-display");
-    displayEl.textContent = currentQuesitonIndex.display;
-    //to move to the next question from the previous and clear our old responce(class"choices") use innerHTML with ""
+    //console.log(test)
+
+    currentQuestionr++;
+    answer = questions[currentQuestion].answer;
+
+    questions.textContent = questions(currentQuestion).title;
     choicesEl.innerHTML = "";
-    //use loop for choices -using Node for now just to get through this section, then will try array again, resource:
-    //MDN:Range.selectNodeContents()
+    var choicesEl = questions[currentQuestion].choicesEl;
 
-    currentQuestion.choices.forEach(function (choice, i) {
-        //new button for each choice?
+    for (var question = 0; question < choicesEl.length; question++) {
+        var nextChoiceEl = document.createElement("button");
 
-        varchoiceNode = document.createElement("button");
-        choiceNode.setAttribute("class", "choice");
-        choiceNode.setAttribute("value", choice);
-
-        choiceNode.textContent = i + 1 + ". " + choice;
-        //click event listener attached to each choice:
-        choiceNode.onclick = nextQuestion;
-
-        //to display on the page:
-        choiceEl.appendChild(choiceNoce);
-    });
-}
+        nextChoiceEl.textContent = choices[question]
+        answerButton = answerChoicesEl.appendChild(nextChoice).setAttribute("class", question);
+        nextQuestion();
+    }
 
 
-function nextQuestion() {
+    // //get the question fromt he erray of questions (on top of file):
+    // var currentQuestion = questions[currentQuesitonIndex];
+    // //current question shown
+    // var displayEl = document.querySelector("#question-display");
+    // displayEl.textContent = currentQuesitonIndex.display;
+    // //to move to the next question from the previous and clear our old responce(class"choices") use innerHTML with ""
+    // choicesEl.innerHTML = "";
+    // //use loop for choices -using Node for now just to get through this section, then will try array again, resource:
+    // //MDN:Range.selectNodeContents()
 
-    //create content for correct and wrong questions
-    //send results for highscores for answer received
-    // move to the next queston 
-    //check for next question
-    //when finished with questons -end quiz 
-    endQuiz();
-}
+    // currentQuestion.choices.forEach(function (choice, i) {
+    //     //new button for each choice?
 
-function endQuiz() {
-    //to stop timer in the quiz
-    clearInterval(timerId);
-    //list last page and show scores and initials:
-    var lastPageEl = document.querySelector("#last-page");
-    lastPageEl.removeAttribute("class");
-    //scores and time remaining? 
+    //     varchoiceNode = document.createElement("button");
+    //     choiceNode.setAttribute("class", "choice");
+    //     choiceNode.setAttribute("value", choice);
 
-}
-//{ };
+    //     choiceNode.textContent = i + 1 + ". " + choice;
+    //     //click event listener attached to each choice:
+    //     choiceNode.onclick = nextQuestion;
 
-function timeRemaining() {
-    //shows if the user has time left and updates the time during quiz:
-    time--;
-    timerEl.textContent = time;
+    //     //to display on the page:
+    //     choiceEl.appendChild(choiceNoce);
 
-    //if not time left, end Quiz
-    if (time <= 0) {
+
+    function nextQuestion() {
+
+        //create content for correct and wrong questions
+        //send results for highscores for answer received
+        // move to the next queston 
+        //check for next question
+        //when finished with questons -end quiz 
         endQuiz();
     }
-}
 
-function highscoreResults() {
-    //to get value of the input box for initals, check the time, restart the function or clear it
-    var initials = initialsEl.value.trim();//w3:trim() method returns the string stripped of whitespace from both ends. trim()//The trim() method checks value before and after the string
-    if (initials !== "") {
-        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-        //if no scores were received-set to an empty array [], save score to local storage with localStorage.getItem
-        //get users initials:
-        var newScore = {
-            score: time,
-            initials: initials
-        };
-        //push to local shorage with score.push
-        highscores.push(newScore);
-        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+    function endQuiz() {
+        //to stop timer in the quiz
+        clearInterval(timerId);
+        //list last page and show scores and initials:
+        var lastPageEl = document.querySelector("#last-page");
+        lastPageEl.removeAttribute("class");
+        //scores and time remaining? 
+
+    }
+    //{ };
+
+    function timeRemaining() {
+        //shows if the user has time left and updates the time during quiz:
+        time--;
+        timerEl.textContent = time;
+
+        //if not time left, end Quiz
+        if (time <= 0) {
+            endQuiz();
+        }
     }
 
-}
+    function highscoreResults() {
+        //to get value of the input box for initals, check the time, restart the function or clear it
+        var initials = initialsEl.value.trim();//w3:trim() method returns the string stripped of whitespace from both ends. trim()//The trim() method checks value before and after the string
+        if (initials !== "") {
+            var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+            //if no scores were received-set to an empty array [], save score to local storage with localStorage.getItem
+            //get users initials:
+            var newScore = {
+                score: time,
+                initials: initials
+            };
+            //push to local shorage with score.push
+            highscores.push(newScore);
+            window.localStorage.setItem("highscores", JSON.stringify(highscores));
+        }
 
-// //fuction showScores() {
-//     var highscores = JSON.parse(window.localStorage.getItem("highscores"));
-//     var input = document.getElementById("highscores");
-//     input.textContent =
-//         showScores();
-// }
-// function clearHighscores() {
-//     window.localStorage.removeItem("highscores");
-//     window.location.reload();
-// }
+    };
 
-// document.getElementById("clear").onclick = clearHighscores;
+    // //fuction showScores() {
+    //     var highscores = JSON.parse(window.localStorage.getItem("highscores"));
+    //     var input = document.getElementById("highscores");
+    //     input.textContent =
+    //         showScores();
+    // }
+    // function clearHighscores() {
+    //     window.localStorage.removeItem("highscores");
+    //     window.location.reload();
+    // }
 
+    // document.getElementById("clear").onclick = clearHighscores;
 
-
-startButton.onclick = startQuiz;
+  //  startButton.onclick = startQuiz;
 // //all the eventListeners
 //startButton.addEventListener("click", startQuiz);
 
