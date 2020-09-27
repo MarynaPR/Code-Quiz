@@ -13,11 +13,13 @@ var rtrnButton = document.getElementById("return");
 //var for questions, choices, answers, timer, progress
 
 var question = document.getElementById("guestion");
-var timerEl = document.getElementById("timer");
+var timerEl = document.getElementById("time-left");
 var choices = document.getElementById("choices");
 
 var questionsEl = document.getElementById("questions");
 var progressEl = document.getElementById("progress");
+var nameEl = document.getElementsById("name");
+
 
 //start quiz function
 var startQuiz = function (event) {
@@ -29,13 +31,13 @@ var startQuiz = function (event) {
     questionsEl.removeAttribute("class");
 
     //start timer
-    //timerId = setInterval(countDown, 1000);
+    //timerId = setInterval(countDown, 1000) 1000=1s;
     //show starting time when question prompt:
     //timerEl.textContent = time - left;
     getQuestion();
 };
 
-var getQuestion = function (event) {
+var getQuestions = function (event) {
     //array of questions
     var currentQuestion = questions[currentQuesitonIndex];
     var displayEl = document.getElementById("question-display");
@@ -82,23 +84,50 @@ var getQuestion = function (event) {
             }
         ];
     };
+    var quizDone = function (event) {
+        clearInterval(timerId);
+
+    };
+
     var countdown = function (event) {
+        //update the time left
+        time - left--;
+        timerEl.textContent = time - left;
+
+        //if ran out of time , check through the following: 
+        if (time - left <= 0) {
+            quizDone();
+        }
+    };
+
+    // var return = function (event) {
+    // };
+    //to save all the results from quiz:
+    var saveHighscores = function (event) {
 
     };
 
-    var return = function (event) {
-    };
-    var clearHighscores = function (event) { };
-    var viewHighScores = function (event) { };
-    var submit = function (event) { };
+        // };
 
-    //startButton.onclick = startQuiz;
-    startButton.addEventListener("click", startQuiz);
-    clearButton.addEventListener("click", clearHighscores);
-    submitButton.addEventListener("click", submit);
-    rtrnButton.addEventListener("click", return);
+        // var clearHighscores = function (event) { };
+        // var viewHighScores = function (event) { };
+        // var submit = function (event) {
+        //     function renderRegistered() { }
+
+        //     var name = document.querySelector(#name).value;
+        //     if (nameEl === "") {
+        //         displayMessage("error", "name cannot be blank");
+
+        //     } esle {
+        //         displayMessage("sucess", "registered sucessfully");
+        //         localStorage.setItem("name", name);
+        //         renderRegistered();
+        //     }
+        // });
 
 
-
-
-
+        //startButton.onclick = startQuiz;
+        //startButton.addEventListener("click", startQuiz);
+        //clearButton.addEventListener("click", clearHighscores);
+        //submitButton.addEventListener("click", submit);
+        //rtrnButton.addEventListener("click", return);
