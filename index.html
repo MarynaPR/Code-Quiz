@@ -6,54 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CODING-QUIZ</title>
+    <!--add stylesheets link-->
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <header>
+        <!--page title-->
         <h1 class="page-title">C O D I N G - Q U I Z</h1>
     </header>
 
     <main>
         <!-- div for highscores, times etc.-->
         <div class="wrapper">
-            <div id="start-page" class="start">
-                <p> Try to answer the following code-related questions within the time
-                    limit. Keep in mind that incorrect answers will penalize your
-                    score/time by ten seconds!</p>
+            <!--show time remaining for quiz on the page-->
+            <div id="time">Remaining Time</div>
+
+            <div id="first-page" class="start">
+                <p> Instructions: try to answer the following code-related questions within the time
+                    remaining. Keep in mind that incorrect answers will penalize your
+                    score/time by ten seconds. Best of Luck!</p>
+                <ul id="choices"></ul>
+            </div>
+            <!--button to start quiz-->
+            <div>
                 <button id="start">START QUIZ</button>
             </div>
+
+            <!--link to highscores.html-->
+            <div class="scores">
+                <a href="highscores.html">View Highscores</a>
+            </div>
+
+            <!--questions-->
             <div id="questions" class="hide">
                 <h2 id="question-display"></h2>
                 <div id="choices" class="choices"></div>
                 <!--if offering abcd options:
                 <div class="choice" id="a"() b c c and so on )onclick= "checkAnswer("a")>a</div> -->
             </div>
+
+            <!--last page input-->
             <div id="last-page" class="hide">
-                <h2>Done!</h2>
-                <p> Your final score is <span id="final-scpre"></span>.</p>
-                <p> Enter your name: <input type="text" id="name" />
-                    <button id="submit">Submit</button>
+                <h2>DONE!</h2>
+                <p> Your final score is <span id="final-score"></span>.</p>
+                <p> Enter your initials: <input type="text" id="initials" />
+                    <button id="submit">SUBMIT</button>
                 </p>
             </div>
-            <!-- 
-                if deducting time for wrong answers? 
-                <div id="counter">60</div> -->
 
             <!--to track progress-->
             <div id="progress" style="display: none;"></div>
-            <div id="timer">Remaining Time: <span id="time-left">0</span></div>
 
-
-            <!--can add image or/and %of progress
-           <img src=""><p>50%</p> -->
+            <!--link to js-->
+            <script src="./assets/js/script.js"></script>
         </div>
     </main>
+
+    <!--footer-->
     <footer>
         &copy;2020 by Code-Quiz
     </footer>
-
-    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
