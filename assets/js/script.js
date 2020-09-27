@@ -1,7 +1,7 @@
 //var for questions 
 var questions = [
     {
-        display: "Commonly used data types DO NOT include:",
+        display: "Commonly used data types do not include:",
         choices: ["strings", "booleans", "alerts", "numbers"],
         answer: "alerts"
     },
@@ -34,114 +34,60 @@ var questions = [
     }
 ];
 
-//list all var 
+//list var time
 var score = 0;
-var questionIndex = 0;
-//time remaining? var currentTime = document.getElementById("time")
-var timerId;
-//global for later? when reducing by 10 sec
-var timeLeft = 60;
-//var time =questions.lenght*10
+var time = 0;
+var timer;
+// var timeLeft = 60;
+
+//var for quesiton:
+var currentQuestion = -1;
+//var timeDeduction = 10;
+
+// //wrapper
+// var wrapper = document.querySelector("#wrapper");
+// var codingContentEl = document.querySelector("codingContent");
 
 //all var buttons
-var startButton = document.getElementById("start");
-var clearButton = document.getElementById("clear");
-var submitButton = document.getElementById("submit");
-var rtrnButton = document.getElementById("return");
-//var for questions, choices, answers, timer, progress
+// var startButton = document.querySelector("start");
+// var clearButton = document.querySelector("clear");
+// var submitButton = document.querySelector("submit");
+// var rtrnButton = document.querySelector("return");
+//var for questions, choices, answers, progress
 
-var questionsEl = document.getElementById("guestions");
-var timerEl = document.getElementById("time");
-var choices = document.getElementById("choices");
-var initialsEl = document.getElementById("initials");
+var questionsEl = document.querySelector("guestions");
+var questionIndex = 0;
+// var choices = document.querySelector("choices");
+// var initialsEl = document.querySelector("initials");
 
-//var questionsEl = document.getElementById("questions");
-var progressEl = document.getElementById("progress");
-//var nameEl = document.getElementsById("name");
-
+// var progressEl = document.querySelector("progress");
+// //var nameEl = document.getElementsById("name");
 
 
-//start quiz function
-var startQuiz = function (event) {
-    console.log("test");
-    //hide the first display page and move to question portion next by setAttribut and removeAttribute"class"-hide:
+// list functions:
 
+//var startQuiz = function (event) 
+function startQuiz {
+    //to move to the questions page set attribute to hide the page:
     var firstPageEl = document.getElementById("first-page");
     firstPageEl.setAttribute("class", "hide");
-    questionsEl.removeAttribute("class");
-    //1000=1s;
-    timerId = setInterval(countDown, 1000);
-    //show starting time when question prompt:
-    timerEl.textContent = time;
-    getQuestion();
-};
 
-var getQuestion = function (event) {
-    //array of questions
-    var currentQuestion = questions[currentQuesitonIndex];
-    //current question shown
-    var displayEl = document.getElementById("question-display");
-    displayEl.textContent = currentQuesitonIndex.display;
-    //after the 1st question answered, either automatically or with 'next' button go to the next question
-    // use loop for choices
-    //currentChoices
-    //for loop
-    //while loop
+    //star the timer when the game begins:
+    timerId = setInterval(timeRemaining, 1000);
 
-    var quizDone = function (event) {
-        clearInterval(timerId);
+    timeEl.textContent = time;
+    timeLeft = 60;
 
-    };
-
-    // start timer
-    // var countdown = function (event) {
-    //     //update the time left
-    //     time - left--;
-    //     timerEl.textContent = time - left;
-
-    //     //if ran out of time , check through the following: 
-    //     if (time - left <= 0) {
-    //         quizDone();
-    //     }
-    // };
-
-    // var return = function (event) {
-    // };
-    //to save all the results from quiz:
-    var saveHighscores = function (event) {
-
-    };
-
-    // };
-    for (var=0, i < questions.length; i++) {
-        var response = window.prompt(question[i].prompt)
-        if (response == questions[i].answer) {
-            score++;
-            alert("correct!");
-        } else {
-            alert("WRONG!");
-        }
-    }
-    alert("you got " + score + "/" + questions.length");
-// var clearHighscores = function (event) { };
-// var viewHighScores = function (event) { };
-// var submit = function (event) {
-//     function renderRegistered() { }
-
-//     var name = document.querySelector(#name).value;
-//     if (nameEl === "") {
-//         displayMessage("error", "name cannot be blank");
-
-//     } esle {
-//         displayMessage("sucess", "registered sucessfully");
-//         localStorage.setItem("name", name);
-//         renderRegistered();
-//     }
-// });
+    getQuestions();
+}
+// function timeRemaining() {};
+// function getQuestions() {};
+// function endQuiz(){}
 
 
-startButton.onclick = startQuiz;
-    startButton.addEventListener("click", startQuiz);
-        //clearButton.addEventListener("click", clearHighscores);
-        //submitButton.addEventListener("click", submit);
-        //rtrnButton.addEventListener("click", return);
+// //startButton.onclick = startQuiz;
+// //all the eventListeners
+// startButton.addEventListener("click", startQuiz);
+//     clearButton.addEventListener("click", clearHighscores);
+//     submitButton.addEventListener("click", submit);
+//     rtrnButton.addEventListener("click", return);

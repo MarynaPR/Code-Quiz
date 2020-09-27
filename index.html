@@ -17,25 +17,29 @@
     </header>
 
     <main>
-        <!-- div for highscores, times etc.-->
-        <div class="wrapper">
-            <!--show time remaining for quiz on the page-->
-            <div id="time">Remaining Time</div>
 
+        <!--link to highscores.html-->
+        <div class="scores">
+            <a href="highscores.html">View Highscores</a>
+        </div>
+
+        <!--show time remaining for quiz on the page-->
+        <div id="timer">Time:
+            <span id="time">0</span>
+        </div>
+
+        <!--first page where the game starts-->
+        <div class="wrapper">
             <div id="first-page" class="start">
                 <p> Instructions: try to answer the following code-related questions within the time
                     remaining. Keep in mind that incorrect answers will penalize your
                     score/time by ten seconds. Best of Luck!</p>
-                <ul id="choices"></ul>
-            </div>
-            <!--button to start quiz-->
-            <div>
-                <button id="start">START QUIZ</button>
+                <!--<ul id="choices"></ul>-->
             </div>
 
-            <!--link to highscores.html-->
-            <div class="scores">
-                <a href="highscores.html">View Highscores</a>
+            <!--button to start quiz and timer-->
+            <div>
+                <button id="start">START QUIZ</button>
             </div>
 
             <!--questions-->
@@ -49,17 +53,20 @@
             <!--last page input-->
             <div id="last-page" class="hide">
                 <h2>DONE!</h2>
-                <p> Your final score is <span id="final-score"></span>.</p>
+                <p> Your score is <span id="score"></span>.</p>
                 <p> Enter your initials: <input type="text" id="initials" />
                     <button id="submit">SUBMIT</button>
                 </p>
             </div>
 
             <!--to track progress-->
-            <div id="progress" style="display: none;"></div>
+            <div id="progress" class="progress hide"></div>
+            <!--style="display: none;"-->
 
             <!--link to js-->
             <script src="./assets/js/script.js"></script>
+            <!--adding to scores.html only?
+                <script src="./assets/js/scores.js"></script>-->
         </div>
     </main>
 
