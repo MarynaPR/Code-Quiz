@@ -51,11 +51,12 @@ var currentQuestion = -1;
 
 //all var buttons
 var startButton = document.querySelector("start");
+//to clear Highscores:
 // var clearButton = document.querySelector("clear");
 // var submitButton = document.querySelector("submit");
 // var rtrnButton = document.querySelector("return");
-//var for questions, choices, answers, progress
 
+//var for questions, choices, answers, progress
 var questionsEl = document.querySelector("guestions");
 var currentQuestionIndex = 0;
 var choices = document.querySelector("choices");
@@ -110,14 +111,42 @@ function getQuestions() {
         //to display on the page:
         choiceEl.appendChild(choiceNoce);
     });
-};
+}
 
-//function = nextQuestion()
+
+function nextQuestion() {
+
+    //create content for correct and wrong questions
+    //send results for highscores for answer received
+    // move to the next queston 
+    //check for next question
+    //when finished with questons -end quiz 
+    endQuiz();
+}
+
+function endQuiz() {
+    //to stop timer in the quiz
+    clearInterval(timerId);
+    //list last page and show scores and initials:
+    var lastPageEl = document.querySelector("last-page");
+    lastPageEl.removeAttribute("class");
+    //scores and time remaining? 
+
+}
 //{ };
 
-// function timeRemaining() {};
+function timeRemaining() {
+    //shows if the user has time left and updates the time during quiz:
+    time--;
+    timerEl.textContent = time;
 
-// function endQuiz(){}
+    //if not time left, end Quiz
+    if (time <= 0) {
+        endQuiz();
+    }
+}
+
+
 
 
 
