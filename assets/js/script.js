@@ -50,18 +50,18 @@ var currentQuestion = -1;
 // var codingContentEl = document.querySelector("codingContent");
 
 //all var buttons
-var startButton = document.querySelector("start");
-//to clear Highscores:
-// var clearButton = document.querySelector("clear");
-// var submitButton = document.querySelector("submit");
-// var rtrnButton = document.querySelector("return");
+var startButton = document.querySelector("#start");
+
+var clearButton = document.querySelector("clear");
+var submitButton = document.querySelector("submit");
+var rtrnButton = document.querySelector("return");
 
 //var for questions, choices, answers, progress
-var questionsEl = document.querySelector("guestions");
+var questionsEl = document.querySelector("#guestions");
 var currentQuestionIndex = 0;
-var choices = document.querySelector("choices");
+var choices = document.querySelector("#choices");
 // var initialsEl = document.querySelector("initials");
-var timerEl = document.querySelector("time");
+var timerEl = document.querySelector("#time");
 
 // var progressEl = document.querySelector("progress");
 
@@ -71,7 +71,7 @@ var timerEl = document.querySelector("time");
 
 //var startQuiz = function (event) 
 function startQuiz() {
-    console.log(test)
+    //console.log(test)
     //to move to the questions page set attribute to hide the page:
     var firstPageEl = document.getElementById("first-page");
     firstPageEl.setAttribute("class", "hide");
@@ -79,8 +79,9 @@ function startQuiz() {
     //star the timer when the game begins:
     timerId = setInterval(timeRemaining, 1000);
 
-    timeEl.textContent = time;
+    timerEl.textContent = time;
     timeLeft = 60;
+
 
     getQuestions();
 };
@@ -90,7 +91,7 @@ function getQuestions() {
     //get the question fromt he erray of questions (on top of file):
     var currentQuestion = questions[currentQuesitonIndex];
     //current question shown
-    var displayEl = document.querySelector("question-display");
+    var displayEl = document.querySelector("#question-display");
     displayEl.textContent = currentQuesitonIndex.display;
     //to move to the next question from the previous and clear our old responce(class"choices") use innerHTML with ""
     choicesEl.innerHTML = "";
@@ -128,7 +129,7 @@ function endQuiz() {
     //to stop timer in the quiz
     clearInterval(timerId);
     //list last page and show scores and initials:
-    var lastPageEl = document.querySelector("last-page");
+    var lastPageEl = document.querySelector("#last-page");
     lastPageEl.removeAttribute("class");
     //scores and time remaining? 
 
@@ -146,13 +147,43 @@ function timeRemaining() {
     }
 }
 
+function highscoreResults() {
+    //to get value of the input box for initals, check the time, restart the function or clear it
+    var initials = initialsEl.value.trim();//w3:trim() method returns the string stripped of whitespace from both ends. trim()//The trim() method checks value before and after the string
+    if (initials !== "") {
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+        //if no scores were received-set to an empty array [], save score to local storage with localStorage.getItem
+        //get users initials:
+        var newScore = {
+            score: time,
+            initials: initials
+        };
+        //push to local shorage with score.push
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+    }
+
+}
+
+// //fuction showScores() {
+//     var highscores = JSON.parse(window.localStorage.getItem("highscores"));
+//     var input = document.getElementById("highscores");
+//     input.textContent =
+//         showScores();
+// }
+// function clearHighscores() {
+//     window.localStorage.removeItem("highscores");
+//     window.location.reload();
+// }
+
+// document.getElementById("clear").onclick = clearHighscores;
 
 
 
-
-//startButton.onclick = startQuiz;
+startButton.onclick = startQuiz;
 // //all the eventListeners
 //startButton.addEventListener("click", startQuiz);
-//     clearButton.addEventListener("click", clearHighscores);
-//     submitButton.addEventListener("click", submit);
-//     rtrnButton.addEventListener("click", return);
+
+//clearButton.addEventListener("click", clearHighscores);
+//submitButton.addEventListener("click", submit);
+//rtrnButton.addEventListener("click", return);
