@@ -36,38 +36,41 @@ var questions = [
 
 //list var time
 var score = 0;
-var time = 0;
-var timer;
+
+var timerId;
 // var timeLeft = 60;
 
 //var for quesiton:
 var currentQuestion = -1;
-//var timeDeduction = 10;
+//timeDeduction = 10:
+//var time = question.length * 15;
 
 // //wrapper
 // var wrapper = document.querySelector("#wrapper");
 // var codingContentEl = document.querySelector("codingContent");
 
 //all var buttons
-// var startButton = document.querySelector("start");
+var startButton = document.querySelector("start");
 // var clearButton = document.querySelector("clear");
 // var submitButton = document.querySelector("submit");
 // var rtrnButton = document.querySelector("return");
 //var for questions, choices, answers, progress
 
 var questionsEl = document.querySelector("guestions");
-var questionIndex = 0;
-// var choices = document.querySelector("choices");
+var currentQuestionIndex = 0;
+var choices = document.querySelector("choices");
 // var initialsEl = document.querySelector("initials");
+var timerEl = document.querySelector("time");
 
 // var progressEl = document.querySelector("progress");
-// //var nameEl = document.getElementsById("name");
+
 
 
 // list functions:
 
 //var startQuiz = function (event) 
-function startQuiz {
+function startQuiz() {
+    console.log(test)
     //to move to the questions page set attribute to hide the page:
     var firstPageEl = document.getElementById("first-page");
     firstPageEl.setAttribute("class", "hide");
@@ -79,15 +82,48 @@ function startQuiz {
     timeLeft = 60;
 
     getQuestions();
-}
+};
+
+function getQuestions() {
+    console.log(test)
+    //get the question fromt he erray of questions (on top of file):
+    var currentQuestion = questions[currentQuesitonIndex];
+    //current question shown
+    var displayEl = document.querySelector("question-display");
+    displayEl.textContent = currentQuesitonIndex.display;
+    //to move to the next question from the previous and clear our old responce(class"choices") use innerHTML with ""
+    choicesEl.innerHTML = "";
+    //use loop for choices -using Node for now just to get through this section, then will try array again, resource:
+    //MDN:Range.selectNodeContents()
+
+    currentQuestion.choices.forEach(function (choice, i) {
+        //new button for each choice?
+
+        varchoiceNode = document.createElement("button");
+        choiceNode.setAttribute("class", "choice");
+        choiceNode.setAttribute("value", choice);
+
+        choiceNode.textContent = i + 1 + ". " + choice;
+        //click event listener attached to each choice:
+        choiceNode.onclick = nextQuestion;
+
+        //to display on the page:
+        choiceEl.appendChild(choiceNoce);
+    });
+};
+
+//function = nextQuestion()
+//{ };
+
 // function timeRemaining() {};
-// function getQuestions() {};
+
 // function endQuiz(){}
 
 
-// //startButton.onclick = startQuiz;
+
+//startButton.onclick = startQuiz;
 // //all the eventListeners
-// startButton.addEventListener("click", startQuiz);
+//startButton.addEventListener("click", startQuiz);
 //     clearButton.addEventListener("click", clearHighscores);
 //     submitButton.addEventListener("click", submit);
 //     rtrnButton.addEventListener("click", return);
